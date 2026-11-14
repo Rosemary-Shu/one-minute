@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="description" content="看一滴水慢慢落下。">
+  <title>一分钟慢下来</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="paper" aria-hidden="true">
+    <div class="wash"></div>
+    <div class="grain"></div>
+  </div>
+
+  <button type="button" class="sound" id="btn-sound" aria-live="polite" aria-label="声音：关">
+    声音：关
+  </button>
+
+  <main class="stage" id="stage">
+    <div class="pool" id="pool" aria-hidden="true">
+      <span class="ripple" id="ripple-1"></span>
+      <span class="ripple" id="ripple-2"></span>
+      <span class="ripple" id="ripple-3"></span>
+    </div>
+    <div class="drop-wrap is-idle" id="drop-wrap" aria-hidden="true">
+      <span class="drop-shadow" id="drop-shadow"></span>
+      <svg class="drop" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="dropBody" cx="64%" cy="28%" r="70%">
+            <stop offset="0%" stop-color="#f7fbfd" stop-opacity="0.96"/>
+            <stop offset="38%" stop-color="#c9dbe5" stop-opacity="0.82"/>
+            <stop offset="76%" stop-color="#7fa0b0" stop-opacity="0.74"/>
+            <stop offset="100%" stop-color="#4f6f80" stop-opacity="0.70"/>
+          </radialGradient>
+          <radialGradient id="dropShine" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.88"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="dropSoft" x="-12%" y="-8%" width="124%" height="120%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.18"/>
+          </filter>
+        </defs>
+        <g filter="url(#dropSoft)">
+          <path fill="url(#dropBody)" d="M24 4.2C24 4.2 8.5 24.2 8.5 39.2C8.5 49.4 15.2 58.5 24 58.5C32.8 58.5 39.5 49.4 39.5 39.2C39.5 24.2 24 4.2 24 4.2Z"/>
+          <ellipse fill="url(#dropShine)" cx="29.2" cy="26.5" rx="5" ry="7.2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="progress" aria-hidden="true">
+      <span class="progress-fill" id="progress-fill"></span>
+    </div>
+  </main>
+
+  <section class="panel is-on" id="panel-start" aria-labelledby="start-line">
+    <p class="line" id="start-line">看一滴水慢慢落下。</p>
+    <button type="button" class="btn" id="btn-start">开始</button>
+  </section>
+
+  <section class="panel" id="panel-end" aria-labelledby="end-line" hidden>
+    <p class="line" id="end-line">一分钟到了。</p>
+    <button type="button" class="btn" id="btn-again">再来一次</button>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
